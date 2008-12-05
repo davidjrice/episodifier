@@ -11,7 +11,7 @@ class Episodifier
   attr_accessor :original_name, :working_name
   cattr_accessor :filters
   
-  @@encoding_groups = ["XviD-LOL"]
+  @@encoding_groups = ["XviD-LOL", "XviD-E7"]
   @@encodings = ["HDTV"]
   
   @@filters = ActiveSupport::OrderedHash.new
@@ -26,7 +26,7 @@ class Episodifier
   # Take in a file name and give us back all the tasty data.
   def initialize(file_name)
     
-    @original_name = @working_name = file_name
+    @original_name = @working_name = file_name.clone
     
     @@filters.each do |f|
       filter, regex = f[0], f[1]
